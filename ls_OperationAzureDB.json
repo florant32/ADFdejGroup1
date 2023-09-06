@@ -1,0 +1,38 @@
+{
+    "name": "ls_OperationAzureDB",
+    "properties": {
+        "parameters": {
+            "SecretName": {
+                "type": "string",
+                "defaultValue": "OperationDatabaseConnectionString"
+            },
+            "OperationKeyVaultURI": {
+                "type": "string",
+                "defaultValue": "https://akv-datalake-accelerator.vault.azure.net/"
+            }
+        },
+        "annotations": [],
+        "type": "AzureSqlDatabase",
+        "typeProperties": {
+            "connectionString": {
+                "type": "AzureKeyVaultSecret",
+                "store": {
+                    "referenceName": "ls_AzureKeyVault",
+                    "type": "LinkedServiceReference",
+                    "parameters": {
+                        "KeyVaultURI": {
+                            "value": "@linkedService().OperationKeyVaultURI",
+                            "type": "Expression"
+                        }
+                    }
+                },
+                "secretName": {
+                    "value": "@linkedService().SecretName",
+                    "type": "Expression"
+                },
+                "secretVersion": ""
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/linkedservices"
+}
