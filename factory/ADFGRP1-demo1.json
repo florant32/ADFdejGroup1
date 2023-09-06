@@ -1,0 +1,9 @@
+{
+	"name": "ADFGRP1-demo1",
+	"location": "canadacentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e613b2fe-efdd-4f36-98be-99a9fd1a019b",
+		"tenantId": "16b3c013-d300-468d-ac64-7eda0820b6d3"
+	}
+}
