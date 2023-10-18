@@ -1,0 +1,105 @@
+{
+	"name": "3solutionsofSaveCSVintoExcel",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "felixdejpark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": true,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "f19f2b35-66fd-42a9-82b5-d1330ad5a769"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/034f6d9b-1014-46e1-abdc-03b785afc51d/resourceGroups/RG_desjardins_group1/providers/Microsoft.Synapse/workspaces/synapsedej123/bigDataPools/felixdejpark",
+				"name": "felixdejpark",
+				"type": "Spark",
+				"endpoint": "https://synapsedej123.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/felixdejpark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"# read the CSV file using PySpark and convert it to a DataFrame:\r\n",
+					"csv_file_path = \"abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.csv\"\r\n",
+					"df = spark.read.csv(csv_file_path, header=True, inferSchema=True)\r\n",
+					" \r\n",
+					"#Convert the PySpark DataFrame to a Pandas DataFrame:\r\n",
+					"pandas_df = df.toPandas()\r\n",
+					"\r\n",
+					"#Save the Pandas DataFrame as an Excel file:\r\n",
+					"excel_file_path = \"abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.xlsx\"\r\n",
+					"pandas_df.to_excel(excel_file_path, index=False, engine='openpyxl')"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import pandas\r\n",
+					"#read excel file\r\n",
+					"fileSource=('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.csv')\r\n",
+					"df = pandas.read_csv(fileSource)\r\n",
+					"\r\n",
+					"##print(df)\r\n",
+					"\r\n",
+					"# we install this library to be able to call Excel writer\r\n",
+					"# In Case you use this make sure The Library Is Local to your workspace Package Package \r\n",
+					"\r\n",
+					"   #!pip install xlrd  use XlsxEriter engine or lobrary\r\n",
+					"# Autre Methode  Read Excel file with pandas library\r\n",
+					"fileTarget=('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada2.xlsx')\r\n",
+					"df.to_excel(fileTarget) "
+				],
+				"execution_count": 4
+			}
+		]
+	}
+}

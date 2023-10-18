@@ -1,0 +1,95 @@
+{
+	"name": "copydata",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "felixdejpark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "05d0b27c-16fb-435c-9cde-d905799df483"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/034f6d9b-1014-46e1-abdc-03b785afc51d/resourceGroups/RG_desjardins_group1/providers/Microsoft.Synapse/workspaces/synapsedej123/bigDataPools/felixdejpark",
+				"name": "felixdejpark",
+				"type": "Spark",
+				"endpoint": "https://synapsedej123.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/felixdejpark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import pandas\r\n",
+					"#read excel file\r\n",
+					"fileSource=('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.csv')\r\n",
+					"df = pandas.read_csv(fileSource)\r\n",
+					"print(df)\r\n",
+					"\r\n",
+					"# we install this library to be able to call Excel writer\r\n",
+					"   #!pip install xlrd\r\n",
+					"# Autre Methode  Read Excel file with pandas library\r\n",
+					"fileTarget=('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada2.xlsx')\r\n",
+					"df.to_excel(fileTarget) \r\n",
+					"\r\n",
+					"\r\n",
+					"#write excel file\r\n",
+					"#df.to_excel('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.xlsx')\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"#file =('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.xlsx')\r\n",
+					"#excel_panda = pandas.read_excel(file)\r\n",
+					"\r\n",
+					"##show the data read from the excel spreadsheet\r\n",
+					"#excel_panda.head()\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 11
+			}
+		]
+	}
+}

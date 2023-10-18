@@ -1,0 +1,177 @@
+{
+	"name": "Notebook Test2",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "felixdejpark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "0160e228-b8bd-46da-9f00-b8acd5aa5636"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/034f6d9b-1014-46e1-abdc-03b785afc51d/resourceGroups/RG_desjardins_group1/providers/Microsoft.Synapse/workspaces/synapsedej123/bigDataPools/felixdejpark",
+				"name": "felixdejpark",
+				"type": "Spark",
+				"endpoint": "https://synapsedej123.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/felixdejpark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"import pandas\r\n",
+					"#read excel file\r\n",
+					"fileSource=('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.csv')\r\n",
+					"df = pandas.read_csv(fileSource)\r\n",
+					"print(df)\r\n",
+					"\r\n",
+					"# we install this library to be able to call Excel writer\r\n",
+					"!pip install xlrd\r\n",
+					"# Autre Methode  Read Excel file with pandas library\r\n",
+					"#fileTarget=('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada2.xlsx')\r\n",
+					"#df.to_excel(fileTarget) \r\n",
+					"\r\n",
+					"\r\n",
+					"#df.to_excel(fileTarget, sheet_name = 'Sheet1', index = False)\r\n",
+					"\r\n",
+					"#write excel file\r\n",
+					"df.to_excel('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.xlsx')\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"#file =('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.xlsx')\r\n",
+					"#excel_panda = pandas.read_excel(file)\r\n",
+					"\r\n",
+					"##show the data read from the excel spreadsheet\r\n",
+					"#excel_panda.head()\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					""
+				],
+				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"pip install XlsxWriter "
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"import xlsxwriter\r\n",
+					"\r\n",
+					"workbook = xlsxwriter.Workbook('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.xlsx')\r\n",
+					"worksheet = workbook.add_worksheet()\r\n",
+					"\r\n",
+					"worksheet.write('A1', 'Hello world')\r\n",
+					"\r\n",
+					"workbook.close()"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"df = pd.DataFrame([[\"ABC\", \"XYZ\"]], columns=[\"Foo\", \"Bar\"])  \r\n",
+					"with pd.ExcelWriter(\"abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada345.xlsx\") as writer:\r\n",
+					"    df.to_excel(writer) "
+				],
+				"execution_count": 2
+			}
+		]
+	}
+}

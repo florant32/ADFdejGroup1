@@ -1,0 +1,224 @@
+{
+	"name": "Notebook 2",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "felixdejpark",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "7936cb34-a43f-4d62-bd57-d04f2c98438c"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"476528b2-f64d-463a-af89-b795bbcc5a79": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"0": "ProductID",
+										"1": "Date",
+										"2": "Zip",
+										"3": "Units",
+										"4": "Revenue",
+										"5": "Country"
+									},
+									{
+										"0": "1082",
+										"1": "2015-06-28",
+										"2": "R3E",
+										"3": "1",
+										"4": "225.6975",
+										"5": "Canada"
+									},
+									{
+										"0": "1082",
+										"1": "2015-12-14",
+										"2": "M6H",
+										"3": "1",
+										"4": "230.9475",
+										"5": "Canada"
+									},
+									{
+										"0": "1082",
+										"1": "2016-05-03",
+										"2": "L5T",
+										"3": "1",
+										"4": "230.9475",
+										"5": "Canada"
+									},
+									{
+										"0": "1082",
+										"1": "2018-05-14",
+										"2": "R3B",
+										"3": "1",
+										"4": "230.9475",
+										"5": "Canada"
+									},
+									{
+										"0": "1082",
+										"1": "2018-06-30",
+										"2": "T6J",
+										"3": "1",
+										"4": "230.9475",
+										"5": "Canada"
+									},
+									{
+										"0": "1085",
+										"1": "2020-12-28",
+										"2": "R3N",
+										"3": "1",
+										"4": "89.1975",
+										"5": "Canada"
+									},
+									{
+										"0": "1085",
+										"1": "2020-12-28",
+										"2": "R3X",
+										"3": "1",
+										"4": "89.1975",
+										"5": "Canada"
+									},
+									{
+										"0": "1085",
+										"1": "2021-03-24",
+										"2": "T6J",
+										"3": "1",
+										"4": "89.1975",
+										"5": "Canada"
+									},
+									{
+										"0": "1075",
+										"1": "2016-07-20",
+										"2": "R3B",
+										"3": "1",
+										"4": "254.5725",
+										"5": "Canada"
+									}
+								],
+								"schema": [
+									{
+										"key": "0",
+										"name": "_c0",
+										"type": "string"
+									},
+									{
+										"key": "1",
+										"name": "_c1",
+										"type": "string"
+									},
+									{
+										"key": "2",
+										"name": "_c2",
+										"type": "string"
+									},
+									{
+										"key": "3",
+										"name": "_c3",
+										"type": "string"
+									},
+									{
+										"key": "4",
+										"name": "_c4",
+										"type": "string"
+									},
+									{
+										"key": "5",
+										"name": "_c5",
+										"type": "string"
+									}
+								],
+								"truncated": false
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"0"
+									],
+									"seriesFieldKeys": [
+										"0"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/034f6d9b-1014-46e1-abdc-03b785afc51d/resourceGroups/RG_desjardins_group1/providers/Microsoft.Synapse/workspaces/synapsedej123/bigDataPools/felixdejpark",
+				"name": "felixdejpark",
+				"type": "Spark",
+				"endpoint": "https://synapsedej123.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/felixdejpark",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net",
+					"authHeader": null
+				},
+				"sparkVersion": "3.3",
+				"nodeCount": 3,
+				"cores": 8,
+				"memory": 56,
+				"extraHeader": null
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada.csv', format='csv'\r\n",
+					"## If header exists uncomment line below\r\n",
+					"##, header=True\r\n",
+					")\r\n",
+					"display(df.limit(10))\r\n",
+					"\r\n",
+					"df.write.csv(\"abfss://felixsystemfilename@felixstorage1234.dfs.core.windows.net/synapse/workspaces/synapsedej123/warehouse/Canada3.csv\")\r\n",
+					"\r\n",
+					"\r\n",
+					"!pip install xlrd\r\n",
+					""
+				],
+				"execution_count": 13
+			}
+		]
+	}
+}
