@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdejaprilgrp1"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureBlobdejgroup1_connectionString": {
+			"value": ""
+		},
+		"LK_storagedejgroup1_connectionString": {
+			"value": ""
+		},
+		"LS_storageaprilgrp1_accountKey": {
+			"value": ""
+		},
+		"synapsedej123-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:synapsedej123.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"LS_storageaprilgrp1_properties_typeProperties_url": {
+			"value": "https://storagedejaprilgrp1.dfs.core.windows.net/"
+		},
+		"synapsedej123-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://felixstorage1234.dfs.core.windows.net"
+		}
+	}
+}
